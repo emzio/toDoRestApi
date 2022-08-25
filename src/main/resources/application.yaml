@@ -8,4 +8,9 @@ spring:
     url: 'jdbc:h2:file:/home/emzio/Dokumenty/projekty/UdemyRestApi/UdemyToDoRestApi/todo-db'
   jpa:
     hibernate.ddl-auto: create-drop
-my.taskAllowMultipleTasksFromTemplate: false
+  main:
+    banner-mode: "off"
+#my.taskAllowMultipleTasksFromTemplate: false
+task:
+  template:
+    allowMultipleTasks: false

@@ -3,19 +3,22 @@ package pl.coderslab.UdemyToDoRestApi.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.coderslab.UdemyToDoRestApi.TaskConfigurationProperties;
 
 @RestController
 public class InfoController {
 
-    @Autowired
     private DataSourceProperties properties;
 
-    @Value("${my.taskAllowMultipleTasksFromTemplate}")
-    private String myProp;
+//    @Value("${my.taskAllowMultipleTasksFromTemplate}")
+    private TaskConfigurationProperties myProp;
 
+    public InfoController(DataSourceProperties properties, TaskConfigurationProperties myProp) {
+        this.properties = properties;
+        this.myProp = myProp;
+    }
 
     @GetMapping("info/url")
     String url(){
@@ -23,7 +26,7 @@ public class InfoController {
     }
 
     @GetMapping("info/prop")
-    String myProp(){
-        return myProp;
+    boolean myProp(){
+        return myProp.isAllowMultipleTasksFromTemplate();
     }
 }
