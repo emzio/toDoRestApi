@@ -1,0 +1,23 @@
+{
+  "groups": [
+    {
+      "name": "task",
+      "type": "pl.coderslab.UdemyToDoRestApi.TaskConfigurationProperties",
+      "sourceType": "pl.coderslab.UdemyToDoRestApi.TaskConfigurationProperties"
+    },
+    {
+      "name": "task.template",
+      "type": "pl.coderslab.UdemyToDoRestApi.TaskConfigurationProperties$Template",
+      "sourceType": "pl.coderslab.UdemyToDoRestApi.TaskConfigurationProperties",
+      "sourceMethod": "getTemplate()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "task.template.allow-multiple-tasks",
+      "type": "java.lang.Boolean",
+      "sourceType": "pl.coderslab.UdemyToDoRestApi.TaskConfigurationProperties$Template"
+    }
+  ],
+  "hints": []
+}

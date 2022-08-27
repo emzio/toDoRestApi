@@ -1,0 +1,9 @@
+spring:
+  h2:
+    console:
+      enabled: true
+      path: '/console'
+  datasource:
+    url: 'jdbc:h2:file:/home/emzio/Dokumenty/projekty/UdemyRestApi/UdemyToDoRestApi/todo-db'
+  jpa:
+    hibernate.ddl-auto: update

@@ -1,0 +1,9 @@
+pl/coderslab/UdemyToDoRestApi/model/TestController.class
+META-INF/spring-configuration-metadata.json
+pl/coderslab/UdemyToDoRestApi/controller/InfoController.class
+pl/coderslab/UdemyToDoRestApi/TaskConfigurationProperties.class
+pl/coderslab/UdemyToDoRestApi/UdemyToDoRestApiApplication.class
+pl/coderslab/UdemyToDoRestApi/model/TaskRepository.class
+pl/coderslab/UdemyToDoRestApi/controller/TaskController.class
+pl/coderslab/UdemyToDoRestApi/model/SQLTaskRepository.class
+pl/coderslab/UdemyToDoRestApi/model/Task.class
