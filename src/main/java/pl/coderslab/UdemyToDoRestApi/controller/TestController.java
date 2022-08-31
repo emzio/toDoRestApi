@@ -1,4 +1,4 @@
-package pl.coderslab.UdemyToDoRestApi.model;
+package pl.coderslab.UdemyToDoRestApi.controller;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
