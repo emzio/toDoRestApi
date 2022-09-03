@@ -1,10 +1,8 @@
 package pl.coderslab.UdemyToDoRestApi.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 public abstract class TaskAuditable {
@@ -16,6 +14,19 @@ public abstract class TaskAuditable {
     @NotBlank(message = "Task description must not be empty")
     String description;
     Boolean done;
+
+    private LocalDateTime createdOn;
+    private LocalDateTime updatedOn;
+
+    @PrePersist
+    void prePersist(){
+        createdOn=LocalDateTime.now();
+    }
+
+    @PreUpdate
+    void preUpdate(){
+        updatedOn=LocalDateTime.now();
+    }
 
     public int getId() {
         return id;

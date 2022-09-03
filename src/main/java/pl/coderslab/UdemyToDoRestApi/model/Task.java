@@ -7,8 +7,6 @@ import java.time.LocalDateTime;
 @Table(name = "tasks")
 public class Task extends TaskAuditable{
     private LocalDateTime deadline;
-    @Embedded
-    private Audit audit = new Audit();
     @ManyToOne()
     @JoinColumn(name = "TASK_GROUPS_ID")
     private TaskGroups group;

@@ -9,8 +9,6 @@ public class TaskGroups extends TaskAuditable{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private Set<Task> tasks;
 
-    @Embedded
-    private Audit audit = new Audit();
     public TaskGroups() {
     }
 
