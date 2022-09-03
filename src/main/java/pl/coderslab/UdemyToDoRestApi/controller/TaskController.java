@@ -4,10 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.UdemyToDoRestApi.model.Task;
 import pl.coderslab.UdemyToDoRestApi.model.TaskRepository;
 
+import javax.persistence.EntityManager;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
@@ -41,8 +43,23 @@ class TaskController {
         if (!taskRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
-        toUpdate.setId(id);
-        taskRepository.save(toUpdate);
+        taskRepository.findById(id)
+                .ifPresent(task -> {
+                    task.updateFrom(toUpdate);
+                    taskRepository.save(task);
+                });
+        return ResponseEntity.noContent().build();
+    }
+
+    @Transactional
+    @PatchMapping("/tasks/{id}")
+    public ResponseEntity<?> toggleTask(@PathVariable int id){
+        if (!taskRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        taskRepository.findById(id)
+                .ifPresent(task ->
+                    task.setDone(!task.getDone()));
         return ResponseEntity.noContent().build();
     }
 

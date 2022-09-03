@@ -1,17 +1,6 @@
-#spring.data.rest.base-path=/api
 spring:
   h2:
     console:
-      enabled: true
-      path: '/console'
-  datasource:
-    url: 'jdbc:h2:file:/home/emzio/Dokumenty/projekty/UdemyRestApi/UdemyToDoRestApi/todo-db'
-  jpa:
-    hibernate.ddl-auto: create-drop
-  main:
-    banner-mode: "off"
-#task.taskAllowMultipleTasksFromTemplate: true
-#task.template.allowMultipleTasks: true
-task:
-  template:
-    allowMultipleTasks: false
+      enabled: false
+#  jpa:
+#    hibernate.ddl-auto: create-drop

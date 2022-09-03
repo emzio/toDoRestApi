@@ -6,9 +6,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "task_groups")
-public class TaskGroup {
+public class TaskGroups {
     @Id
-    @GeneratedValue(strategy =GenerationType.AUTO)
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
     private int id;
     @NotBlank(message = "Task group's  description must not be empty")
     private String description;
@@ -16,7 +16,7 @@ public class TaskGroup {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private Set<Task> tasks;
 
-    public TaskGroup() {
+    public TaskGroups() {
     }
 
     public int getId() {
