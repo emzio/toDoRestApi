@@ -15,5 +15,5 @@ public interface SQLTaskGroupsRepository extends JpaRepository<TaskGroups, Integ
     @Query("SELECT distinct g from TaskGroups g join fetch g.tasks")
     List<TaskGroups>  findAll();
 
-    List<TaskGroups> findAllByDoneIsFalseAndProjectsId(int id);
+    List<TaskGroups> findAllByDoneIsFalseAndProjectId(int id);
 }

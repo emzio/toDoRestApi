@@ -9,7 +9,7 @@ public interface TaskGroupsRepository {
 
     Optional<TaskGroups> findById(Integer integer);
 
-    List<TaskGroups> findAllByDoneIsFalseAndProjectsId(int id);
+    List<TaskGroups> findAllByDoneIsFalseAndProjectId(int id);
 
     TaskGroups save(TaskGroups taskGroups);
 

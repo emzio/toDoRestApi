@@ -12,7 +12,7 @@ public class Project {
     private int id;
     private String description;
 
-    @OneToMany(mappedBy = "projects")
+    @OneToMany(mappedBy = "project")
     private Set<TaskGroups> groups;
     public String getDescription() {
         return description;
