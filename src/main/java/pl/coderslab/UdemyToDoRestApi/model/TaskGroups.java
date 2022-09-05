@@ -10,13 +10,13 @@ public class TaskGroups extends TaskAuditable{
     private Set<Task> tasks;
     @ManyToOne
     @JoinColumn(name = "project_id")
-    private Projects projects;
+    private Project projects;
 
-    public Projects getProjects() {
+    public Project getProjects() {
         return projects;
     }
 
-    void setProjects(Projects projects) {
+    void setProjects(Project projects) {
         this.projects = projects;
     }
 

@@ -10,9 +10,11 @@ public class ProjectSteps {
     @Column(name = "id", nullable = false)
     private int id;
     private String description;
+    @Column(name = "days_to_deadline")
+    private Long daysToDeadline;
     @ManyToOne
     @JoinColumn(name = "project_id")
-    private Projects projects;
+    private Project projects;
 
     public int getId() {
         return id;
@@ -30,11 +32,19 @@ public class ProjectSteps {
         this.description = description;
     }
 
-    public Projects getProjects() {
+    public Long getDaysToDeadline() {
+        return daysToDeadline;
+    }
+
+    public void setDaysToDeadline(Long daysToDeadline) {
+        this.daysToDeadline = daysToDeadline;
+    }
+
+    public Project getProjects() {
         return projects;
     }
 
-    void setProjects(Projects projects) {
+    void setProjects(Project projects) {
         this.projects = projects;
     }
 

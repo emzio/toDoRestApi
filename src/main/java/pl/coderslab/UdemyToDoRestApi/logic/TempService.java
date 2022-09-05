@@ -22,4 +22,13 @@ public class TempService {
                  .peek(s -> logger.warn("description: " + s))
                 .collect(Collectors.toList());
     }
+
+//    @Autowired
+//    //FIXME N+1
+//    public List<String> temp2(TaskGroupsRepository taskGroupsRepository){
+//        return taskGroupsRepository.findAllByDoneIsFalseAndProjectsId(1).stream()
+//                .map(taskGroups -> taskGroups.getDescription())
+//                .peek(s -> logger.warn("description: " + s))
+//                .collect(Collectors.toList());
+//    }
 }

@@ -1,20 +1,24 @@
 package pl.coderslab.UdemyToDoRestApi.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-public class Projects {
+@Table(name = "projects")
+public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private int id;
     private String description;
 
+    @OneToMany(mappedBy = "projects")
+    private Set<TaskGroups> groups;
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    void setDescription(String description) {
         this.description = description;
     }
 
@@ -22,7 +26,15 @@ public class Projects {
         return id;
     }
 
-    public void setId(int id) {
+    void setId(int id) {
         this.id = id;
+    }
+
+    public Set<TaskGroups> getGroups() {
+        return groups;
+    }
+
+    void setGroups(Set<TaskGroups> groups) {
+        this.groups = groups;
     }
 }
