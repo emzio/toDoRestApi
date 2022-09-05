@@ -13,11 +13,13 @@ public interface TaskRepository {
 
     Optional<Task> findById(Integer id);
 
-    Task save(Task entity);
-
     Page<Task> findAll(Pageable page);
 
     List<Task> findByDoneIs(@Param("state") Boolean done);
 
     boolean existsById(Integer id);
+
+    boolean existsByDoneIsFalseAndGroup_Id(Integer groupId);
+
+    Task save(Task entity);
 }
