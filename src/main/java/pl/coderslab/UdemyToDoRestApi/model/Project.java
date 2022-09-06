@@ -14,6 +14,8 @@ public class Project {
 
     @OneToMany(mappedBy = "project")
     private Set<TaskGroups> groups;
+    @OneToMany(mappedBy = "project")
+    private Set<ProjectSteps> steps;
     public String getDescription() {
         return description;
     }
@@ -36,5 +38,13 @@ public class Project {
 
     void setGroups(Set<TaskGroups> groups) {
         this.groups = groups;
+    }
+
+    public Set<ProjectSteps> getSteps() {
+        return steps;
+    }
+
+    void setSteps(Set<ProjectSteps> steps) {
+        this.steps = steps;
     }
 }

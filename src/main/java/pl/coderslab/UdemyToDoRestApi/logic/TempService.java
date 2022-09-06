@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.coderslab.UdemyToDoRestApi.model.ProjectRepository;
 import pl.coderslab.UdemyToDoRestApi.model.TaskGroupsRepository;
 
 import java.util.List;
@@ -23,8 +24,14 @@ public class TempService {
                 .collect(Collectors.toList());
     }
 
+    @Autowired
+    public List<String> tempProjects(ProjectRepository projectRepository){
+        return projectRepository.findAll().stream()
+                .map(project -> project.getDescription())
+                .collect(Collectors.toList());
+    }
+
 //    @Autowired
-//    //FIXME N+1
 //    public List<String> temp2(TaskGroupsRepository taskGroupsRepository){
 //        return taskGroupsRepository.findAllByDoneIsFalseAndProjectsId(1).stream()
 //                .map(taskGroups -> taskGroups.getDescription())
