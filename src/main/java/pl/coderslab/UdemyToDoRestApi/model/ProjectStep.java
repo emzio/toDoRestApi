@@ -4,7 +4,8 @@ package pl.coderslab.UdemyToDoRestApi.model;
 import javax.persistence.*;
 
 @Entity
-public class ProjectSteps {
+@Table(name = "project_steps")
+public class ProjectStep {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)

@@ -1,5 +1,6 @@
 package pl.coderslab.UdemyToDoRestApi.adapter;
 
+import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -15,5 +16,9 @@ public interface SQLTaskGroupsRepository extends JpaRepository<TaskGroups, Integ
     @Query("SELECT distinct g from TaskGroups g join fetch g.tasks")
     List<TaskGroups>  findAll();
 
+    @Override
     List<TaskGroups> findAllByDoneIsFalseAndProjectId(int id);
+
+    @Override
+    boolean existsByDoneIsFalseAndProjectId(int id);
 }
