@@ -44,7 +44,7 @@ public abstract class TaskAuditable {
         this.description = description;
     }
 
-    public Boolean getDone() {
+    public Boolean isDone() {
         return done;
     }
 

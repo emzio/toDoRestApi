@@ -59,7 +59,7 @@ class TaskController {
         }
         taskRepository.findById(id)
                 .ifPresent(task ->
-                    task.setDone(!task.getDone()));
+                    task.setDone(!task.isDone()));
         return ResponseEntity.noContent().build();
     }
 
