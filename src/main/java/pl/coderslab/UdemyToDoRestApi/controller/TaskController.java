@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.UdemyToDoRestApi.model.Task;
 import pl.coderslab.UdemyToDoRestApi.model.TaskRepository;
 
-import javax.persistence.EntityManager;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;

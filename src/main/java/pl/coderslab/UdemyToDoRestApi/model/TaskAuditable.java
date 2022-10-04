@@ -40,7 +40,7 @@ public abstract class TaskAuditable {
         return description;
     }
 
-    void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 

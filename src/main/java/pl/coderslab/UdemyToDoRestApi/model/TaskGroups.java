@@ -12,6 +12,9 @@ public class TaskGroups extends TaskAuditable{
     @JoinColumn(name = "project_id")
     private Project project;
 
+    public TaskGroups() {
+    }
+
     public Project getProject() {
         return project;
     }
@@ -20,14 +23,12 @@ public class TaskGroups extends TaskAuditable{
         this.project = project;
     }
 
-    public TaskGroups() {
-    }
 
     public Set<Task> getTasks() {
         return tasks;
     }
 
-    void setTasks(Set<Task> tasks) {
+    public void setTasks(Set<Task> tasks) {
         this.tasks = tasks;
     }
 }

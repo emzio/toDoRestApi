@@ -1,13 +1,18 @@
 package pl.coderslab.UdemyToDoRestApi.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import pl.coderslab.UdemyToDoRestApi.logic.TempService;
 
 @Controller
 public class TestController {
+
+    private final Logger logger = LoggerFactory.getLogger(TempService.class);
 
     @GetMapping("/test")
     ResponseEntity<String> test(){
@@ -26,5 +31,6 @@ public class TestController {
         String[] body = {"body test", "body2"};
         return ResponseEntity.ok().body(body);
     }
+
 }
 

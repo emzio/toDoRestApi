@@ -11,7 +11,6 @@ public class Project {
     @Column(name = "id", nullable = false)
     private int id;
     private String description;
-
     @OneToMany(mappedBy = "project")
     private Set<TaskGroups> groups;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
@@ -32,7 +31,7 @@ public class Project {
         this.id = id;
     }
 
-    public Set<TaskGroups> getGroups() {
+    Set<TaskGroups> getGroups() {
         return groups;
     }
 
