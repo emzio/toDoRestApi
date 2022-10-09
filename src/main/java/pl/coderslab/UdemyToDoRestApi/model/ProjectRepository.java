@@ -9,6 +9,6 @@ public interface ProjectRepository {
 
     Optional<Project> findById(Integer integer);
 
-    TaskGroups save(TaskGroups taskGroups);
+    Project save(Project entity);
 
 }

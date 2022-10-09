@@ -9,8 +9,6 @@ public interface TaskGroupsRepository {
 
     Optional<TaskGroups> findById(Integer integer);
 
-    List<TaskGroups> findAllByDoneIsFalseAndProjectId(int id);
-
     TaskGroups save(TaskGroups taskGroups);
 
     boolean existsByDoneIsFalseAndProjectId(int projectId);
