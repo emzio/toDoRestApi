@@ -31,7 +31,7 @@ public class Project {
         this.id = id;
     }
 
-    Set<TaskGroups> getGroups() {
+    public Set<TaskGroups> getGroups() {
         return groups;
     }
 

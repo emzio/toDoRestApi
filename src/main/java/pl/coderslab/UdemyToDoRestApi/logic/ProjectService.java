@@ -2,35 +2,49 @@ package pl.coderslab.UdemyToDoRestApi.logic;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.RequestScope;
-import pl.coderslab.UdemyToDoRestApi.model.Project;
-import pl.coderslab.UdemyToDoRestApi.model.ProjectRepository;
-import pl.coderslab.UdemyToDoRestApi.model.TaskGroups;
-import pl.coderslab.UdemyToDoRestApi.model.TaskGroupsRepository;
+import pl.coderslab.UdemyToDoRestApi.TaskConfigurationProperties;
+import pl.coderslab.UdemyToDoRestApi.model.*;
+import pl.coderslab.UdemyToDoRestApi.model.projection.GroupReadModel;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequestScope
 public class ProjectService {
-    private final ProjectRepository projectRepository;
-    private final TaskGroupsRepository repository;
+    private final ProjectRepository repository;
+    private final TaskGroupsRepository taskGroupsRepository;
+    private final TaskConfigurationProperties configuration;
 
-    public ProjectService(ProjectRepository projectRepository, TaskGroupsRepository repository) {
-        this.projectRepository = projectRepository;
+    public ProjectService(ProjectRepository repository, TaskGroupsRepository taskGroupsRepository, TaskConfigurationProperties configuration) {
         this.repository = repository;
+        this.taskGroupsRepository = taskGroupsRepository;
+        this.configuration = configuration;
     }
 
-    public List<Project> findAll(){
-        return projectRepository.findAll();
+    public List<Project> readAll(){
+        return repository.findAll();
     }
 
-    public Project creatProject(Project source){
-        return projectRepository.save(source);
+    public Project save(Project source){
+        return repository.save(source);
     }
 
-//    public TaskGroups createGroup(int projectId, LocalDateTime deadline){
-//        projectRepository.findById(projectId).stream()
-//                .map(project -> project.)
-//    }
+    public GroupReadModel createGroup(int projectId, LocalDateTime deadline){
+        if (!configuration.getTemplate().isAllowMultipleTasks()&&taskGroupsRepository.existsByDoneIsFalseAndProjectId(projectId)) {
+            throw new IllegalStateException("Only one undone group from project is allowed");
+        }
+        TaskGroups result = repository.findById(projectId).map(project -> {
+            TaskGroups taskGroup = new TaskGroups();
+            taskGroup.setDescription(project.getDescription());
+            taskGroup.setTasks(project.getSteps().stream()
+                    .map(projectStep ->
+                            new Task(projectStep.getDescription(), deadline.plusDays(projectStep.getDaysToDeadline()))
+                    ).collect(Collectors.toSet()));
+            return taskGroup;
+        }).orElseThrow(() -> new IllegalArgumentException("Project with given id not found"));
+        return new GroupReadModel(result);
+    }
+
 }
