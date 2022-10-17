@@ -15,6 +15,10 @@ public class Project {
     private Set<TaskGroups> groups;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
     private Set<ProjectStep> steps;
+
+    public Project() {
+    }
+
     public String getDescription() {
         return description;
     }
@@ -31,7 +35,7 @@ public class Project {
         this.id = id;
     }
 
-    public Set<TaskGroups> getGroups() {
+    Set<TaskGroups> getGroups() {
         return groups;
     }
 

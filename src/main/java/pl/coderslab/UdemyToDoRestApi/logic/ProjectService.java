@@ -36,13 +36,14 @@ public class ProjectService {
             throw new IllegalStateException("Only one undone group from project is allowed");
         }
         TaskGroups result = repository.findById(projectId).map(project -> {
-            TaskGroups taskGroup = new TaskGroups();
-            taskGroup.setDescription(project.getDescription());
-            taskGroup.setTasks(project.getSteps().stream()
+            TaskGroups targetGroup = new TaskGroups();
+            targetGroup.setDescription(project.getDescription());
+            targetGroup.setTasks(project.getSteps().stream()
                     .map(projectStep ->
                             new Task(projectStep.getDescription(), deadline.plusDays(projectStep.getDaysToDeadline()))
                     ).collect(Collectors.toSet()));
-            return taskGroup;
+            targetGroup.setProject(project);
+            return taskGroupsRepository.save(targetGroup);
         }).orElseThrow(() -> new IllegalArgumentException("Project with given id not found"));
         return new GroupReadModel(result);
     }
