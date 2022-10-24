@@ -2,11 +2,17 @@ package pl.coderslab.UdemyToDoRestApi.logic;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.test.util.ReflectionTestUtils;
 import pl.coderslab.UdemyToDoRestApi.TaskConfigurationProperties;
 import pl.coderslab.UdemyToDoRestApi.model.*;
 import pl.coderslab.UdemyToDoRestApi.model.projection.GroupReadModel;
+import pl.coderslab.UdemyToDoRestApi.model.projection.GroupTaskReadModel;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -19,6 +25,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 class ProjectServiceTest {
+
+    Logger logger = LoggerFactory.getLogger(ProjectServiceTest.class);
+
 //        when + then
 //        assertThatThrownBy(() -> toTest.createGroup(0, LocalDateTime.now()))
 //                .isInstanceOf(IllegalStateException.class);
@@ -105,14 +114,40 @@ class ProjectServiceTest {
         assertThat(result.getTasks()).allMatch(task -> task.getDescription().equals("foo"));
 
 
-        assertThat(countBeforeCall +1).isEqualTo(inMemoryGroupRepo.count());
+        assertThat(countBeforeCall+1).isEqualTo(inMemoryGroupRepo.count());
 
     }
 
     private Project projectWith(String description, Set<Integer> daysToDeadline){
         var result = mock(Project.class);
+
         //TODO
-        //set<Task> -> done==true
+//        var tasksGroups = mock(TaskGroups.class);
+//        var singleTask = mock(Task.class);
+//        when(singleTask.isDone()).thenReturn(true);
+//        ReflectionTestUtils.setField(Project.class, "groups", tasksGroups);
+//        Field reader = MyClass.class.getDeclaredField("reader");
+//        Method setGroups = Project.class.getDeclaredMethod("setGroups", Set<TaskGroups>)
+//        //set<Task> -> done==true
+
+        //
+
+//        Task singleTask = new Task("single task", LocalDateTime.now());
+//        singleTask.setDone(true);
+//        Set<Task> tasks = new HashSet<>();
+//        tasks.add(singleTask);
+//        TaskGroups singleTaskGroups = new TaskGroups();
+//        singleTaskGroups.setTasks(tasks);
+//        Set<TaskGroups> tasksGroups = new HashSet<>();
+//        tasksGroups.add(singleTaskGroups);
+//        try {
+//            Field groups = Project.class.getDeclaredField("groups");
+//            groups.setAccessible(true);
+//            groups.set(result, tasksGroups);
+//        } catch (NoSuchFieldException |  IllegalAccessException e) {
+//            throw new RuntimeException(e);
+//        }
+
         Set<ProjectStep> steps = daysToDeadline.stream()
                 .map(days -> {
                     ProjectStep projectStep = mock(ProjectStep.class);
@@ -159,7 +194,7 @@ class ProjectServiceTest {
             @Override
             public Optional<TaskGroups> findById(Integer integer) {
             return Optional.ofNullable(groupsMap.get(integer));
-        }
+            }
 
             @Override
             public TaskGroups save(TaskGroups entity) {
@@ -174,18 +209,17 @@ class ProjectServiceTest {
                 } catch (IllegalAccessException | NoSuchFieldException e) {
                     throw new RuntimeException(e);
                 }
-            } else {
-                groupsMap.put(index, entity);
             }
+            groupsMap.put(index, entity);
             return entity;
-        }
+            }
 
             @Override
             public boolean existsByDoneIsFalseAndProjectId(int projectId) {
             return groupsMap.values().stream()
                     .filter(groups -> !groups.isDone())
                     .anyMatch(groups -> groups.getProject() != null && groups.getProject().getId() == projectId);
-        }
+            }
     }
 
 }
