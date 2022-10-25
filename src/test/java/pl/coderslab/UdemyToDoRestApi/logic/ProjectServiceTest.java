@@ -28,12 +28,6 @@ class ProjectServiceTest {
 
     Logger logger = LoggerFactory.getLogger(ProjectServiceTest.class);
 
-//        when + then
-//        assertThatThrownBy(() -> toTest.createGroup(0, LocalDateTime.now()))
-//                .isInstanceOf(IllegalStateException.class);
-//        assertThatExceptionOfType(IllegalStateException.class)
-//                .isThrownBy(() -> toTest.createGroup(0, LocalDateTime.now()));
-
     @Test
     @DisplayName("should throw IllegalStateException when configured to allow just 1 group and the other undone group exists")
     void createGroup_noMultipleGroupsConfig_And_undoneGroupExists_throwsIllegalStateException() {
@@ -120,34 +114,6 @@ class ProjectServiceTest {
 
     private Project projectWith(String description, Set<Integer> daysToDeadline){
         var result = mock(Project.class);
-
-        //TODO
-//        var tasksGroups = mock(TaskGroups.class);
-//        var singleTask = mock(Task.class);
-//        when(singleTask.isDone()).thenReturn(true);
-//        ReflectionTestUtils.setField(Project.class, "groups", tasksGroups);
-//        Field reader = MyClass.class.getDeclaredField("reader");
-//        Method setGroups = Project.class.getDeclaredMethod("setGroups", Set<TaskGroups>)
-//        //set<Task> -> done==true
-
-        //
-
-//        Task singleTask = new Task("single task", LocalDateTime.now());
-//        singleTask.setDone(true);
-//        Set<Task> tasks = new HashSet<>();
-//        tasks.add(singleTask);
-//        TaskGroups singleTaskGroups = new TaskGroups();
-//        singleTaskGroups.setTasks(tasks);
-//        Set<TaskGroups> tasksGroups = new HashSet<>();
-//        tasksGroups.add(singleTaskGroups);
-//        try {
-//            Field groups = Project.class.getDeclaredField("groups");
-//            groups.setAccessible(true);
-//            groups.set(result, tasksGroups);
-//        } catch (NoSuchFieldException |  IllegalAccessException e) {
-//            throw new RuntimeException(e);
-//        }
-
         Set<ProjectStep> steps = daysToDeadline.stream()
                 .map(days -> {
                     ProjectStep projectStep = mock(ProjectStep.class);
