@@ -9,7 +9,6 @@ public class GroupTaskReadModel {
     public GroupTaskReadModel(Task source) {
         description = source.getDescription();
         done = source.isDone();
-//        done = true;
     }
 
     public String getDescription() {
