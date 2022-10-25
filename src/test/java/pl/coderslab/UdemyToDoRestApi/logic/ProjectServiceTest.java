@@ -7,6 +7,7 @@ import pl.coderslab.UdemyToDoRestApi.model.ProjectRepository;
 import pl.coderslab.UdemyToDoRestApi.model.TaskGroups;
 import pl.coderslab.UdemyToDoRestApi.model.TaskGroupsRepository;
 
+import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -121,7 +122,14 @@ class ProjectServiceTest {
             @Override
             public TaskGroups save(TaskGroups entity) {
                 if (entity.getId() == 0){
-                    TaskGroups.class.getDeclaredField("id").set(index++);
+                    try {
+                        Field id = TaskGroups.class.getSuperclass().getDeclaredField("id");
+                        id.setAccessible(true);
+                        id.set(TaskGroups.class,index++);
+
+                    } catch (IllegalAccessException  |  NoSuchFieldException e) {
+                        throw new RuntimeException(e);
+                    }
                 } else {
                     groupsMap.put(index, entity);
                 }
@@ -132,6 +140,6 @@ class ProjectServiceTest {
             public boolean existsByDoneIsFalseAndProjectId(int projectId) {
                 return false;
             }
-        }
+        };
     }
 }

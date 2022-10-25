@@ -19,7 +19,7 @@ public class TaskGroups extends TaskAuditable{
         return project;
     }
 
-    public void setProject(Project project) {
+     public void setProject(Project project) {
         this.project = project;
     }
 

@@ -13,7 +13,7 @@ public abstract class TaskAuditable {
     private int id;
     @NotBlank(message = "Task description must not be empty")
     String description;
-    Boolean done;
+    boolean done;
 
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
