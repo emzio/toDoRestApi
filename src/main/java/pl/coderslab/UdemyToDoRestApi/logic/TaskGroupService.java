@@ -46,30 +46,4 @@ public class TaskGroupService {
         result.setDone(!result.isDone());
         repository.save(result);
     }
-
-
-//    @Autowired
-//    //FIXME N+1
-//    public List<String> temp(TaskGroupsRepository taskGroupsRepository){
-//         return taskGroupsRepository.findAll().stream()
-//                .flatMap(taskGroups -> taskGroups.getTasks().stream())
-//                .map(task -> task.getDescription())
-//                 .peek(s -> logger.warn("description: " + s))
-//                .collect(Collectors.toList());
-//    }
-//
-//    @Autowired
-//    public List<String> tempProjects(ProjectRepository projectRepository){
-//        return projectRepository.findAll().stream()
-//                .map(project -> project.getDescription())
-//                .collect(Collectors.toList());
-//    }
-
-//    @Autowired
-//    public List<String> temp2(TaskGroupsRepository taskGroupsRepository){
-//        return taskGroupsRepository.findAllByDoneIsFalseAndProjectsId(1).stream()
-//                .map(taskGroups -> taskGroups.getDescription())
-//                .peek(s -> logger.warn("description: " + s))
-//                .collect(Collectors.toList());
-//    }
 }

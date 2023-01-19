@@ -2,17 +2,10 @@ package pl.coderslab.UdemyToDoRestApi.logic;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.test.util.ReflectionTestUtils;
 import pl.coderslab.UdemyToDoRestApi.TaskConfigurationProperties;
 import pl.coderslab.UdemyToDoRestApi.model.*;
 import pl.coderslab.UdemyToDoRestApi.model.projection.GroupReadModel;
-import pl.coderslab.UdemyToDoRestApi.model.projection.GroupTaskReadModel;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -25,8 +18,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 class ProjectServiceTest {
-
-    Logger logger = LoggerFactory.getLogger(ProjectServiceTest.class);
 
     @Test
     @DisplayName("should throw IllegalStateException when configured to allow just 1 group and the other undone group exists")
